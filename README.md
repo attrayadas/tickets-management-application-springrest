@@ -1,4 +1,4 @@
-# Tickets ManagementApplication
+# Tickets Management Application
 A compact REST API project with integrated Swagger, utilizing Spring REST, Spring Data JPA, and MySQL for efficient data management.
 
 ## Swagger- UI
