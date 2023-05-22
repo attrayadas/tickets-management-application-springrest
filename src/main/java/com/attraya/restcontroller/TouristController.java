@@ -27,62 +27,38 @@ public class TouristController {
 
 	@PostMapping("/register")
 	public ResponseEntity<String> enrollTourist(@RequestBody Tourist tourist) {
-		try {
-			String resultMsg = service.registerTourist(tourist);
-			return new ResponseEntity<String>(resultMsg, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Problem in tourist enrollment", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		String resultMsg = service.registerTourist(tourist);
+		return new ResponseEntity<String>(resultMsg, HttpStatus.OK);
 	}
 
 	@GetMapping("/findAll")
 	public ResponseEntity<?> displayTouristDetails() {
-		try {
-			List<Tourist> list = service.fetchAllTourist();
-			return new ResponseEntity<List<Tourist>>(list, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Problem in fetching tourist", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		List<Tourist> list = service.fetchAllTourist();
+		return new ResponseEntity<List<Tourist>>(list, HttpStatus.OK);
 	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<?> displayTouristById(@PathVariable("id") Integer id) {
-		try {
-			Tourist tourist = service.fetchTouristById(id);
-			return new ResponseEntity<Tourist>(tourist, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
+		Tourist tourist = service.fetchTouristById(id);
+		return new ResponseEntity<Tourist>(tourist, HttpStatus.OK);
 	}
 
 	@PutMapping("/modify")
 	public ResponseEntity<String> modifytourist(@RequestBody Tourist tourist) {
-		try {
-			String msg = service.updateTouristByDetails(tourist);
-			return new ResponseEntity<String>(msg, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
+		String msg = service.updateTouristByDetails(tourist);
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 
 	@PatchMapping("/budgetModify/{id}/{hike}")
 	public ResponseEntity<String> modifytouristBudgetById(@PathVariable("id") Integer id,
 			@PathVariable("hike") Float hikeAmt) {
-		try {
-			String msg = service.updateTouristById(id, hikeAmt);
-			return new ResponseEntity<String>(msg, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
+		String msg = service.updateTouristById(id, hikeAmt);
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> removeTouristById(@PathVariable("id") Integer id) {
-		try {
-			String msg = service.deleteTouristById(id);
-			return new ResponseEntity<String>(msg, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
+		String msg = service.deleteTouristById(id);
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 }
